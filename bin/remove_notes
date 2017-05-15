@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+find . -name "*Note*" -type f -delete
+find . -name "*note*" -type f -delete
+
+rm -rf domain/src/main/java/csci3310.stalkyourfriends/domain/interactor/note
+rm -rf domain/src/test/java/csci3310.stalkyourfriends/domain/interactor/note
+
+mv reset/RestApi data/src/main/java/csci3310.stalkyourfriends/data/net/RestApi.java
+mv reset/en-strings presentation/src/main/res/values/strings.xml
+mv reset/es-strings presentation/src/main/res/values-es/strings.xml
+mv reset/AndroidManifest presentation/src/main/AndroidManifest.xml
+mv reset/DataModule presentation/src/main/java/csci3310.stalkyourfriends/\
+presentation/dependency/module/DataModule.java
+sed -i.bak '/Note/d' ./presentation/src/main/java/csci3310.stalkyourfriends/\
+presentation/dependency/component/ApplicationComponent.java
+rm presentation/src/main/java/csci3310.stalkyourfriends/\
+presentation/dependency/component/ApplicationComponent.java.bak
+mv reset/FragmentInjector presentation/src/main/java/csci3310.stalkyourfriends/\
+presentation/dependency/component/FragmentInjector.java
+mv reset/TestMockerModule presentation/src/androidTest/java/csci3310.stalkyourfriends/\
+presentation/TestMockerModule.java
+mv reset/MainActivity presentation/src/main/java/csci3310.stalkyourfriends/\
+presentation/view/activity/MainActivity.java
+
+rm -rf reset
+
+echo Notes related code files removed
